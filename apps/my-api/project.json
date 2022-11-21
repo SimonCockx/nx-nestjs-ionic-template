@@ -2,8 +2,10 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/my-api/src",
   "projectType": "application",
+  "implicitDependencies": ["my-app"],
   "targets": {
     "build": {
+      "dependsOn": ["^build"],
       "executor": "@nrwl/node:webpack",
       "outputs": ["{options.outputPath}"],
       "options": {
@@ -27,6 +29,7 @@
       }
     },
     "serve": {
+      "dependsOn": ["^build"],
       "executor": "@nrwl/node:node",
       "options": {
         "buildTarget": "my-api:build"
